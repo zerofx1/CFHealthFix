@@ -65,4 +65,10 @@
 
 ---
 
+---
+## 🎥 Фотографии
+![image](https://github.com/user-attachments/assets/ae66efc1-b230-4da5-bfbf-9f1e41a6e748)
+![image](https://github.com/user-attachments/assets/bf11b18c-de66-4d0a-8420-c3698c04b68a)
+---
+
 Спасибо за использование плагина! 🎉  
