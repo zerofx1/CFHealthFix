@@ -3,6 +3,7 @@ package ru.conderfix.cfhealthfix;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketListener;
 import com.github.retrooper.packetevents.event.PacketListenerPriority;
+import com.github.retrooper.packetevents.settings.PacketEventsSettings;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,8 +16,10 @@ public final class CFHealthFix extends JavaPlugin {
 
     @Getter
     private static float fakeHealth;
+
     @Getter
     private static int fakeItemStackAmount;
+
     private final ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
 
     @Override
@@ -31,6 +34,10 @@ public final class CFHealthFix extends JavaPlugin {
         fakeItemStackAmount = threadLocalRandom.nextInt(2, 64);
 
         PacketEvents.getAPI().init();
+
+        final PacketEventsSettings settings = PacketEvents.getAPI().getSettings();
+        settings.checkForUpdates(false);
+        settings.debug(false);
 
         this.registerPackets(new FakeHealthPacket(),
                              new FakeItemStackAmountPacket());

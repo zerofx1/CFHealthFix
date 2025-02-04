@@ -1,5 +1,5 @@
 name: CFHealthFix
-version: '1.0.0'
+version: '1.0.1'
 main: ru.conderfix.cfhealthfix.CFHealthFix
 api-version: '1.16'
 authors: [Quizie, alexec0de, ConderFix,]
