@@ -1,7 +1,7 @@
 package ru.conderfix.cfhealthfix;
 
 import com.github.retrooper.packetevents.PacketEvents;
-import com.github.retrooper.packetevents.event.PacketListener;
+import com.github.retrooper.packetevents.event.EventManager;
 import com.github.retrooper.packetevents.event.PacketListenerPriority;
 import com.github.retrooper.packetevents.settings.PacketEventsSettings;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
@@ -9,6 +9,7 @@ import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.conderfix.cfhealthfix.packets.FakeHealthPacket;
 import ru.conderfix.cfhealthfix.packets.FakeItemStackAmountPacket;
+import ru.conderfix.cfhealthfix.packets.HideEffectsPacket;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -39,14 +40,10 @@ public final class CFHealthFix extends JavaPlugin {
         settings.checkForUpdates(false);
         settings.debug(false);
 
-        this.registerPackets(new FakeHealthPacket(),
-                             new FakeItemStackAmountPacket());
-    }
-
-    private void registerPackets(PacketListener... packetListener) {
-        for (PacketListener listener : packetListener) {
-            PacketEvents.getAPI().getEventManager().registerListener(listener, PacketListenerPriority.NORMAL);
-        }
+        final EventManager eventManager = PacketEvents.getAPI().getEventManager();
+        eventManager.registerListener(new HideEffectsPacket(), PacketListenerPriority.NORMAL);
+        eventManager.registerListener(new FakeHealthPacket(), PacketListenerPriority.NORMAL);
+        eventManager.registerListener(new FakeItemStackAmountPacket(), PacketListenerPriority.NORMAL);
     }
 
     @Override

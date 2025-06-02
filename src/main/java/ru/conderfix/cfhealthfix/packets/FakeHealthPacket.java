@@ -7,6 +7,7 @@ import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerEntityMetadata;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerUpdateLight;
+import org.bukkit.Bukkit;
 import ru.conderfix.cfhealthfix.CFHealthFix;
 
 import java.util.List;
@@ -23,8 +24,7 @@ public class FakeHealthPacket implements PacketListener {
         for (EntityData entityData : wrapper.getEntityMetadata()) {
             if (entityData.getIndex() == 8 &&
                     entityData.getValue() instanceof Float &&
-                    ((Float) entityData.getValue()).intValue() >= 2.0f)
-                entityData.setValue(CFHealthFix.getFakeHealth());
+                    ((Float) entityData.getValue()).intValue() >= 0.1f) entityData.setValue(CFHealthFix.getFakeHealth());
         };
     }
     
