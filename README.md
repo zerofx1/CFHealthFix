@@ -72,6 +72,10 @@
 ## 🎥 Фотографии
 ![image](https://github.com/user-attachments/assets/ae66efc1-b230-4da5-bfbf-9f1e41a6e748)
 ![image](https://github.com/user-attachments/assets/bf11b18c-de66-4d0a-8420-c3698c04b68a)
+<br>
+![image](https://github.com/user-attachments/assets/8ba086d5-6fdd-444b-9ef5-1f657c05d591)
+![image](https://github.com/user-attachments/assets/8e24d3b5-0e2c-4f50-9b68-3410bfb0131d)
+
 
 ---
 
