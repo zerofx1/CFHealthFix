@@ -1,4 +1,5 @@
 ru\conderfix\cfhealthfix\packets\FakeHealthPacket.class
+ru\conderfix\cfhealthfix\util\ServerVersionUtil.class
 ru\conderfix\cfhealthfix\packets\HideEffectsPacket.class
 ru\conderfix\cfhealthfix\packets\FakeItemStackAmountPacket.class
 ru\conderfix\cfhealthfix\CFHealthFix.class

@@ -18,7 +18,7 @@ public class FakeItemStackAmountPacket implements PacketListener {
         if (event.getUser().getEntityId() == wrapper.getEntityId()) return;
 
         for (EntityData entityData : wrapper.getEntityMetadata()) {
-            if (entityData.getIndex() == 7 && entityData.getValue() instanceof ItemStack) {
+            if (entityData.getIndex() == CFHealthFix.getIndexItem() && entityData.getValue() instanceof ItemStack) {
                 final ItemStack itemStack = (ItemStack) entityData.getValue();
                 if (itemStack.getAmount() > 1) {
                     itemStack.setAmount(CFHealthFix.getFakeItemStackAmount());

@@ -22,7 +22,7 @@ public class FakeHealthPacket implements PacketListener {
         if (event.getUser().getEntityId() == wrapper.getEntityId()) return;
 
         for (EntityData entityData : wrapper.getEntityMetadata()) {
-            if (entityData.getIndex() == 8 &&
+            if (entityData.getIndex() == CFHealthFix.getIndexHealth() &&
                     entityData.getValue() instanceof Float &&
                     ((Float) entityData.getValue()).intValue() >= 0.1f) entityData.setValue(CFHealthFix.getFakeHealth());
         };
