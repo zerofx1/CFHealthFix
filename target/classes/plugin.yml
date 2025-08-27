@@ -1,7 +1,0 @@
-name: CFHealthFix
-version: '2.0.0'
-main: ru.conderfix.cfhealthfix.CFHealthFix
-api-version: '1.16'
-description: Система, которая добавляет маленькие палки в колеса читерам.
-depend:
-  - packetevents
