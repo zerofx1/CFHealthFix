@@ -7,33 +7,31 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ServerVersionUtil {
 
+    private static final int INDEX_HEALTH_116 = 8;
+    private static final int INDEX_HEALTH_117 = 8;
+
+    private static final int INDEX_ITEM_116 = 7;
+    private static final int INDEX_ITEM_117 = 8;
+
     public ServerVersion getServerVersion() {
         return PacketEvents.getAPI().getServerManager().getVersion();
     }
 
     public int getIndexHealth(ServerVersion serverVersion) {
-        isServerVersionNotSupported(serverVersion);
-
-        if (serverVersion.compareTo(ServerVersion.V_1_17) <= 0) {
-            return 8; // индекс здоровья до 1.16
-        } else {
-            return 9; // индекс здоровья после 1.16
-        }
+        validateServerVersion(serverVersion);
+        return (serverVersion.compareTo(ServerVersion.V_1_17) <= 0)
+                ? INDEX_HEALTH_116
+                : INDEX_HEALTH_117;
     }
 
     public int getIndexItem(ServerVersion serverVersion) {
-        isServerVersionNotSupported(serverVersion);
-
-        if (serverVersion.compareTo(ServerVersion.V_1_17) <= 0) {
-            return 7; // индекс айтема до 1.16
-        } else {
-            return 8; // индекс айтема после 1.16
-        }
+        validateServerVersion(serverVersion);
+        return (serverVersion.compareTo(ServerVersion.V_1_17) <= 0)
+                ? INDEX_ITEM_116
+                : INDEX_ITEM_117;
     }
 
-    private void isServerVersionNotSupported(ServerVersion serverVersion) {
-        if (serverVersion == ServerVersion.ERROR) {
-            throw new IllegalStateException("Server version is not supported");
-        }
+    private void validateServerVersion(ServerVersion serverVersion) {
+        if (serverVersion == ServerVersion.ERROR) throw new IllegalStateException("Server version is not supported!");
     }
 }

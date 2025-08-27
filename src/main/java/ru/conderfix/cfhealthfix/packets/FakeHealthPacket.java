@@ -1,6 +1,5 @@
 package ru.conderfix.cfhealthfix.packets;
 
-
 import com.github.retrooper.packetevents.event.PacketListener;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
@@ -21,11 +20,16 @@ public class FakeHealthPacket implements PacketListener {
         final WrapperPlayServerEntityMetadata wrapper = new WrapperPlayServerEntityMetadata(event);
         if (event.getUser().getEntityId() == wrapper.getEntityId()) return;
 
-        for (EntityData entityData : wrapper.getEntityMetadata()) {
+        for (EntityData<?> entityData : wrapper.getEntityMetadata()) {
             if (entityData.getIndex() == CFHealthFix.getIndexHealth() &&
                     entityData.getValue() instanceof Float &&
-                    ((Float) entityData.getValue()).intValue() >= 0.1f) entityData.setValue(CFHealthFix.getFakeHealth());
-        };
+                    ((Float) entityData.getValue()).intValue() >= 0.1f) cast(entityData).setValue(CFHealthFix.getFakeHealth());
+        }
+
     }
-    
+
+    @SuppressWarnings("unchecked")
+    private static <T> EntityData<T> cast(EntityData<?> data) {
+        return (EntityData<T>) data;
+    }
 }

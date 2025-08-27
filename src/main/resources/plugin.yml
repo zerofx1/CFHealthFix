@@ -2,7 +2,6 @@ name: CFHealthFix
 version: '${project.version}'
 main: ru.conderfix.cfhealthfix.CFHealthFix
 api-version: '1.16'
-website: https://t.me/quizie_dev
 description: Система, которая добавляет маленькие палки в колеса читерам.
 depend:
   - packetevents

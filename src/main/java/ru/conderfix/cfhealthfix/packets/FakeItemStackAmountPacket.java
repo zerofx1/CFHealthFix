@@ -17,14 +17,19 @@ public class FakeItemStackAmountPacket implements PacketListener {
         final WrapperPlayServerEntityMetadata wrapper = new WrapperPlayServerEntityMetadata(event);
         if (event.getUser().getEntityId() == wrapper.getEntityId()) return;
 
-        for (EntityData entityData : wrapper.getEntityMetadata()) {
-            if (entityData.getIndex() == CFHealthFix.getIndexItem() && entityData.getValue() instanceof ItemStack) {
-                final ItemStack itemStack = (ItemStack) entityData.getValue();
-                if (itemStack.getAmount() > 1) {
-                    itemStack.setAmount(CFHealthFix.getFakeItemStackAmount());
-                    entityData.setValue(itemStack);
-                }
+        for (EntityData<?> entityData : wrapper.getEntityMetadata()) {
+            if (entityData.getIndex() == CFHealthFix.getIndexItem()
+                    && entityData.getValue() instanceof ItemStack itemStack
+                    && itemStack.getAmount() > 1) {
+
+                itemStack.setAmount(CFHealthFix.getFakeItemStackAmount());
+                cast(entityData).setValue(itemStack);
             }
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> EntityData<T> cast(EntityData<?> data) {
+        return (EntityData<T>) data;
     }
 }
