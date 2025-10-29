@@ -2,4 +2,4 @@
 *.log
 *.tmp
 target/
-*.idea
+*.idea/
