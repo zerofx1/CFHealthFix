@@ -10,6 +10,9 @@ import ru.conderfix.cfhealthfix.packets.AbstractPacketListener;
 
 public class FakeHealthPacket extends AbstractPacketListener {
 
+    private final int INDEX_HEALTH = CFHealthFix.getIndexHealth();
+    private final float FAKE_HEALTH = CFHealthFix.getFakeHealth();
+
     @Override
     public void onPacketSend(@NotNull PacketSendEvent event) {
         if (event.getPacketType() != PacketType.Play.Server.ENTITY_METADATA) return;
@@ -18,9 +21,9 @@ public class FakeHealthPacket extends AbstractPacketListener {
         if (event.getUser().getEntityId() == wrapper.getEntityId()) return;
 
         for (EntityData<?> entityData : wrapper.getEntityMetadata()) {
-            if (entityData.getIndex() == CFHealthFix.getIndexHealth() &&
+            if (entityData.getIndex() == INDEX_HEALTH &&
                     entityData.getValue() instanceof Float &&
-                    ((Float) entityData.getValue()).intValue() >= 0.1f) super.cast(entityData).setValue(CFHealthFix.getFakeHealth());
+                    ((Float) entityData.getValue()).intValue() >= 0.1f) super.cast(entityData).setValue(FAKE_HEALTH);
         }
     }
 
