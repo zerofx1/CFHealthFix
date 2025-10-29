@@ -29,7 +29,11 @@ public final class CFHealthFix extends JavaPlugin {
     @Getter
     private static int fakeItemStackAmount, indexHealth, indexItem;
 
-    private final List<PacketListener> listeners = List.of(new HideEffectsPacket(), new FakeHealthPacket(), new FakeItemStackAmountPacket());
+    private static final float MIN_FAKE_HEALTH = 1f;
+    private static final float MAX_FAKE_HEALTH = 20f;
+
+    private static final int MIN_ITEM_AMOUNT = 2;
+    private static final int MAX_ITEM_AMOUNT = 64;
 
     @Override
     public void onLoad() {
@@ -42,7 +46,10 @@ public final class CFHealthFix extends JavaPlugin {
         this.initFakeValues();
         this.initPacketEvents();
 
-        listeners.forEach(listener -> PacketEvents.getAPI().getEventManager().registerListener(listener, PacketListenerPriority.NORMAL));
+        final EventManager eventManager = PacketEvents.getAPI().getEventManager();
+        eventManager.registerListener(new FakeHealthPacket(), PacketListenerPriority.NORMAL);
+        eventManager.registerListener(new FakeItemStackAmountPacket(), PacketListenerPriority.NORMAL);
+        eventManager.registerListener(new HideEffectsPacket(), PacketListenerPriority.NORMAL);
 
         final ServerVersion serverVersion = ServerVersionUtil.getServerVersion();
         indexHealth = ServerVersionUtil.getIndexHealth(serverVersion);
@@ -58,13 +65,6 @@ public final class CFHealthFix extends JavaPlugin {
     public void onDisable() {
         PacketEvents.getAPI().terminate();
     }
-
-    private static final float MIN_FAKE_HEALTH = 1f;
-    private static final float MAX_FAKE_HEALTH = 20f;
-
-    private static final int MIN_ITEM_AMOUNT = 2;
-    private static final int MAX_ITEM_AMOUNT = 64;
-
 
     private void initFakeValues() {
         final ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
