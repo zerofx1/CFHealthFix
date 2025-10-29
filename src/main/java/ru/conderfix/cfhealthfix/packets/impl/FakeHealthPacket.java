@@ -1,20 +1,17 @@
-package ru.conderfix.cfhealthfix.packets;
+package ru.conderfix.cfhealthfix.packets.impl;
 
-import com.github.retrooper.packetevents.event.PacketListener;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerEntityMetadata;
-import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerUpdateLight;
-import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 import ru.conderfix.cfhealthfix.CFHealthFix;
+import ru.conderfix.cfhealthfix.packets.AbstractPacketListener;
 
-import java.util.List;
-
-public class FakeHealthPacket implements PacketListener {
+public class FakeHealthPacket extends AbstractPacketListener {
 
     @Override
-    public void onPacketSend(PacketSendEvent event) {
+    public void onPacketSend(@NotNull PacketSendEvent event) {
         if (event.getPacketType() != PacketType.Play.Server.ENTITY_METADATA) return;
 
         final WrapperPlayServerEntityMetadata wrapper = new WrapperPlayServerEntityMetadata(event);
@@ -23,13 +20,8 @@ public class FakeHealthPacket implements PacketListener {
         for (EntityData<?> entityData : wrapper.getEntityMetadata()) {
             if (entityData.getIndex() == CFHealthFix.getIndexHealth() &&
                     entityData.getValue() instanceof Float &&
-                    ((Float) entityData.getValue()).intValue() >= 0.1f) cast(entityData).setValue(CFHealthFix.getFakeHealth());
+                    ((Float) entityData.getValue()).intValue() >= 0.1f) super.cast(entityData).setValue(CFHealthFix.getFakeHealth());
         }
-
     }
 
-    @SuppressWarnings("unchecked")
-    private static <T> EntityData<T> cast(EntityData<?> data) {
-        return (EntityData<T>) data;
-    }
 }
