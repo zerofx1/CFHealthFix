@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
 public class ServerVersionUtil {
 
     private static final int INDEX_HEALTH_116 = 8;
-    private static final int INDEX_HEALTH_117 = 8;
+    private static final int INDEX_HEALTH_117 = 9;
 
     private static final int INDEX_ITEM_116 = 7;
     private static final int INDEX_ITEM_117 = 8;

@@ -8,6 +8,7 @@ import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.conderfix.cfhealthfix.packets.PacketListenerFactory;
 import ru.conderfix.cfhealthfix.util.ServerVersionUtil;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -44,9 +45,9 @@ public final class CFHealthFix extends JavaPlugin {
         indexItem = ServerVersionUtil.getIndexItem(serverVersion);
 
         final Logger logger = super.getServer().getLogger();
-        logger.info("Server version: " + serverVersion.name());
-        logger.info("Using health index: " + indexHealth);
-        logger.info("Using item index: " + indexItem);
+        logger.info("Server version » " + serverVersion.name());
+        logger.info("Using health index » " + indexHealth);
+        logger.info("Using item index » " + indexItem);
     }
 
     @Override

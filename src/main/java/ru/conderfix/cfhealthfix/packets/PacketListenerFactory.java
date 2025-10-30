@@ -1,7 +1,5 @@
-package ru.conderfix.cfhealthfix;
+package ru.conderfix.cfhealthfix.packets;
 
-import com.github.retrooper.packetevents.event.PacketListener;
-import ru.conderfix.cfhealthfix.packets.AbstractPacketListener;
 import ru.conderfix.cfhealthfix.packets.impl.FakeHealthPacket;
 import ru.conderfix.cfhealthfix.packets.impl.FakeItemStackAmountPacket;
 import ru.conderfix.cfhealthfix.packets.impl.HideEffectsPacket;
